@@ -1,6 +1,7 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
+import Header from './routes/Header';
 import Home from "./routes/Home";
 import Auth from "./routes/Auth";
 import Board from "./routes/Board";
@@ -21,6 +22,7 @@ import Jihwan from "./routes/member/Jihwan";
 function App() {
   return (
     <Router>
+      <Header/>
       <Routes>
         <Route path="/" exact={true} element={<Auth />} />
         <Route path="/Home" element={<Home />} />

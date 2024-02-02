@@ -1,0 +1,39 @@
+.header-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+}
+.banner-icon{
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.banner-icon span{
+  font-size: 30px;
+}
+.user-icon{
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+.user-icon span{
+  font-size: 30px;
+}
+.login_btn{
+  font-size: 20px;
+  border-radius: 7px;
+  border: none;
+  background-color: #287be6;
+  color: white;
+  padding: 10px 30px;
+  transition: background-color 0.3s, transform 0.3s;
+  cursor: pointer;
+}
+.login_btn:hover {
+  background-color: #165ab6;
+}
+
+
+
+
