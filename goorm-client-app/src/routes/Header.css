@@ -2,7 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10px;
+  padding: 0 5px 8px 5px;
 }
 .banner-icon{
   text-decoration: none;
@@ -21,12 +21,12 @@
   font-size: 30px;
 }
 .login_btn{
-  font-size: 20px;
+  font-size: 16px;
   border-radius: 7px;
   border: none;
   background-color: #287be6;
   color: white;
-  padding: 10px 30px;
+  padding: 8px 20px;
   transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
 }
