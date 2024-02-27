@@ -1,7 +1,7 @@
 import React from "react";
 // import './Sign_up.css';
 
-const Sign_up = () => {
+const SignUp = () => {
 
   const checkDuplicate = () => {
     console.log("중복확인 클릭");
@@ -31,4 +31,4 @@ const Sign_up = () => {
   )
 }
 
-export default Sign_up;
+export default SignUp;
