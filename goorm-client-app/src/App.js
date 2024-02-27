@@ -14,9 +14,7 @@ import PBL from "./routes/PBL";
 
 import Donggeun from "./routes/member/Donggeun";
 import Jiho from "./routes/member/Jiho";
-import Juwan from "./routes/member/Juwan";
 import Yerin from "./routes/member/Yerin";
-import Kiho from "./routes/member/Kiho";
 import Mingyu from "./routes/member/Mingyu";
 import Wooseok from "./routes/member/Wooseok";
 import Jihwan from "./routes/member/Jihwan";
@@ -33,11 +31,10 @@ function App() {
         <Route path="/Home/Board" element={<Board />} />
         <Route path="/Home/Members" element={<Members />} />
         <Route path="/Home/PBL" element={<PBL />} />
+        
         <Route path="/Home/Members/Donggeun" element={<Donggeun />} />
         <Route path="/Home/Members/Jiho" element={<Jiho />} />
-        <Route path="/Home/Members/Juwan" element={<Juwan />} />
         <Route path="/Home/Members/Yerin" element={<Yerin />} />
-        <Route path="/Home/Members/Kiho" element={<Kiho />} />
         <Route path="/Home/Members/Mingyu" element={<Mingyu />} />
         <Route path="/Home/Members/Wooseok" element={<Wooseok />} />
         <Route path="/Home/Members/Jihwan" element={<Jihwan />} />
