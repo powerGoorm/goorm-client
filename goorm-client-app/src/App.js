@@ -1,7 +1,9 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+// App.js
+import React, { useState } from "react";
+import "./App.css";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
-import Header from './components/header/Header';
+import Header from "./components/header/Header";
 import Home from "./routes/home/Home";
 import Auth from "./routes/auth/Auth";
 import SignUp from "./routes/auth/SignUp";
@@ -9,9 +11,9 @@ import ResetPassword from "./routes/auth/ResetPassword";
 import Board from "./routes/board/Board";
 import Members from "./routes/member/Members";
 import PBL from "./routes/pbl/PBL";
+import PostDetail from "./routes/board/PostDetail";
 
 /* 멤버 개인 페이지 */
-
 import Donggeun from "./routes/member/Donggeun";
 import Jiho from "./routes/member/Jiho";
 import Yerin from "./routes/member/Yerin";
@@ -20,15 +22,21 @@ import Wooseok from "./routes/member/Wooseok";
 import Jihwan from "./routes/member/Jihwan";
 
 function App() {
+  const [postData, setPostData] = useState(
+    localStorage.getItem("postData")
+      ? JSON.parse(localStorage.getItem("postData"))
+      : []
+  );
+
   return (
     <Router>
-      <Header/>
+      <Header />
       <Routes>
         <Route path="/" exact={true} element={<Auth />} />
         <Route path="/Home" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
-        <Route path="/Home/Board" element={<Board />} />
+        <Route path="/Home/Board" element={<Board postData={postData} setPostData={setPostData} />} />
         <Route path="/Home/Members" element={<Members />} />
         <Route path="/Home/PBL" element={<PBL />} />
 
@@ -38,6 +46,8 @@ function App() {
         <Route path="/Home/Members/Mingyu" element={<Mingyu />} />
         <Route path="/Home/Members/Wooseok" element={<Wooseok />} />
         <Route path="/Home/Members/Jihwan" element={<Jihwan />} />
+
+        <Route path="/home/board/post/:id" element={<PostDetail postData={postData} />} />
       </Routes>
     </Router>
   );
