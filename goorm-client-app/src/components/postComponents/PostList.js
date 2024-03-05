@@ -6,6 +6,7 @@ export default function PostList({ postData, setPostData }) {
 
   console.log("postData", postData);
 
+
   return (
     <div id="post-box">
       { postData && postData.map((data) => (

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./Board.css";
-import PostList from "../../components/PostList";
-import PostingForm from "../../components/PostingForm";
+import PostList from "../../components/postComponents/PostList";
+import PostingForm from "../../components/postComponents/PostingForm";
 
 export default function Board({ postData, setPostData }) {
 
@@ -13,7 +13,7 @@ export default function Board({ postData, setPostData }) {
   // 게시글 작성 폼 toggle을 위한 state
   const [isPostingFormVisible, setIsPostingFormVisible] = useState(false);
 
-  // toggle 함수
+  // Postingform toggle 함수
   const togglePostingForm = () => {
     setIsPostingFormVisible(!isPostingFormVisible);
   };
@@ -47,7 +47,7 @@ export default function Board({ postData, setPostData }) {
     setIsPostingFormVisible(!isPostingFormVisible);
   };
 
-  // 모든 게시글 삭제하기
+  // 모든 게시글 삭제 함수
   const handleRemoveAllPostClick = () => {
     let allRemoveQuestion = window.confirm("정말 모든 게시글을 지우시겠습니까?");
     if (allRemoveQuestion === true) {
@@ -60,11 +60,12 @@ export default function Board({ postData, setPostData }) {
 
   return (
     <div>
-      <div id="page-title">
-        <h1>게시글 목록</h1>
+      <div id="board-page-title">
+        <h1>게시판</h1>
       </div>
+      <hr id="board-title-row"/>
       <div id="board-container">
-        <div id="post-btn-container">
+        <div id="board-post-btn-container">
           <button onClick={togglePostingForm} id="posting-form-toggle-btn">
             {isPostingFormVisible ? "게시글 작성 멈추기" : "게시글 작성하기"}
           </button>
@@ -85,7 +86,7 @@ export default function Board({ postData, setPostData }) {
             />
           </div>
         )}
-        <div id="posts-list-container">
+        <div id="board-posts-list-container">
           <PostList postData={postData} setPostData={setPostData} />
         </div>
       </div>

@@ -47,15 +47,16 @@ export default function PostingForm({ title, setTitle, postBody, setPostBody, wr
         </div>
 
         <div className="mb-3">
-          <textarea 
-            className="form-control" 
-            id="exampleFormControlTextarea1" 
+          <textarea
+            className="form-control"
+            id="exampleFormControlTextarea1"
             rows="3"
+            whiteSpace="pre-line"
             name="postBody"
             placeholder="게시글 내용을 입력하세요."
             value={postBody}
             onChange={handlePostBodyChange}
-            ></textarea>
+          ></textarea>
         </div>
 
         <input
@@ -63,7 +64,7 @@ export default function PostingForm({ title, setTitle, postBody, setPostBody, wr
           type="submit"
           value="게시"
         />
-        
+
       </form>
     </div>
 

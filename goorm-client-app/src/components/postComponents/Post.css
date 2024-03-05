@@ -1,0 +1,117 @@
+/* Post.css */
+
+#post-container {
+  width: 100%;
+}
+
+.post-card {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.post-card-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#post-writer-name {
+  height: 30px;
+  width: fit-content;
+}
+
+#inpost-btn-container {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+}
+
+#inpost-btn-container>div {
+  margin: 0px 3px 0px 3px;
+}
+
+#writer-span {
+  color: blue;
+  font-weight: bold;
+}
+
+#inpost-btn-container>div>button {
+  border: 1px solid #000000;
+  border-radius: 5px;
+}
+
+.card-header {
+  display: flex;
+}
+
+.read-card-header {
+  align-items: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.edit-card-header {
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.edit-card-header>input {
+  margin-bottom: 5px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  height: 40px;
+  padding: 10px;
+  text-align: baseline;
+}
+
+/* post 수정 화면 css */
+
+.post-edit-box {
+  display: flex;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+}
+
+#post-edit-postBody {
+  width: 100%
+}
+
+#post-edit-postBody {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  padding: 10px;
+}
+
+#board-title-row {
+
+  border: none;
+  border-top: 1px solid gray;
+  margin: 0 20px;
+  /* 위아래 여백 조절 */
+
+}
+
+.post-edit-btn-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.post-edit-btn-container > button {
+  border: 1px solid transparent;
+  border-radius: 5px;
+  margin: 5px 5px 10px 5px;
+  background-color: gray;
+  color: white;
+  padding: auto 10px;
+}
+
+#post-edit-cancel-btn:hover {
+  opacity: 0.7;
+}
+
+#post-edit-save-btn:hover {
+  opacity: 0.7;
+}
