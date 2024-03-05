@@ -63,7 +63,7 @@ export default function Board({ postData, setPostData }) {
       <div id="board-page-title">
         <h1>게시판</h1>
       </div>
-      <hr id="board-title-row"/>
+      <hr id="divider"/>
       <div id="board-container">
         <div id="board-post-btn-container">
           <button onClick={togglePostingForm} id="posting-form-toggle-btn">
