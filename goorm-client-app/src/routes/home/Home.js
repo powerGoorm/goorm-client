@@ -1,12 +1,13 @@
 import React from "react";
+import "./Home.css";
 
 const Home = () => {
   return (
-    <div>
-      <h1> Home </h1>
-      <p> 홈 화면입니다. </p>
+    <div className="home-container">
+      <h1 className="home-title">Home</h1>
+      <hr className="divider" />
     </div>
-  )
-}
+  );
+};
 
 export default Home;

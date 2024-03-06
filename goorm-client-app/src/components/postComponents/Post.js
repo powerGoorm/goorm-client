@@ -52,52 +52,64 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
     localStorage.setItem("postData", JSON.stringify(newPostData));
   };
 
+
+  
   if (isEditing) {
     return (
-      <div className="flex items-center justify-between w-full">
+      <div className="post-edit-box card">
         <form onSubmit={handleSubmit}>
-          <input
-            className="w-full px-3 py-2 mr-4"
-            value={editedTitle}
-            onChange={handleTitleEditChange}
-            autoFocus
-          />
-          <input
-            className="w-full px-3 py-2 mr-4"
-            value={editedWriter}
-            onChange={handleWriterEditChange}
-            autoFocus
-          />
-          <textarea
-            className="w-full px-3 py-2 mr-4"
+          <div className="card-header edit-card-header">
+            <input
+              id="post-edit-title"
+              value={editedTitle}
+              onChange={handleTitleEditChange}
+              autoFocus
+            />
+            <input
+              id="post-edit-writer"
+              value={editedWriter}
+              onChange={handleWriterEditChange}
+              autoFocus
+            />
+          </div>
+          <div className="card-body edit-card-body">
+            <textarea
+            id="post-edit-postBody"
             value={editedPostBody}
             onChange={handlePostBodyEditChange}
+            whiteSpace="pre-line"
             autoFocus
             rows="3"
             type="text"
           />
+          </div>
         </form>
-        <div className="items-center">
+        <div className="post-edit-btn-container">
           <button
             onClick={() => setIsEditing(false)}
             type="button"
-          >X</button>
-          <button onClick={handleSubmit} type="submit">save</button>
+            id="post-edit-cancel-btn"
+          >x</button>
+          <button 
+            onClick={handleSubmit} 
+            type="submit"
+            id="post-edit-save-btn"
+          >save</button>
         </div>
       </div>
     )
   } else {
     // 게시글 내용의 글자 수가 100자 이상일 경우, 100자까지만 보여주고 "..."을 추가하여 출력
-    const limitedPostBody = postBody.length > 100 ? postBody.slice(0, 100) + "..." : postBody;
+    const limitedPostBody = postBody.length > 100 ? postBody.slice(0, 200) + "..." : postBody;
 
     return (
       <div id="post-container">
         <div className="card">
-          <div className="card-header">
+          <div className="card-header read-card-header">
             <span id="writer-span">작성자 : {writer}</span> 
             <div id="inpost-btn-container">
               <div id="post-delete">
-                <button id='post-delete-btn' onClick={() => handleDeleteClick(id)}>X</button>
+                <button id='post-delete-btn' onClick={() => handleDeleteClick(id)}>x</button>
               </div>
               <div id="post-edit">
                 <button id='post-edit-btn' onClick={() => setIsEditing(true)}>수정하기</button>

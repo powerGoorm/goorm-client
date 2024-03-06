@@ -1,5 +1,7 @@
-#page-title {
-  margin-left : 10px;
+/* Board.css */
+
+#board-page-title {
+  margin-left: 10px;
   padding: 3px;
   display: flex;
   justify-content: center;
@@ -9,30 +11,48 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border: 1px solid lightgray;
+  
   width: auto;
   padding: 3px;
   margin: 10px;
 }
 
 #board-container > div {
-  padding : 3px;
+  padding: 3px;
   margin: 3px;
 }
 
-#post-btn-container {
+#board-post-btn-container {
   display: flex;
   justify-content: center;
 }
 
-#post-btn-container > button {
-  padding: 5px;
-  margin: 3px;
+#board-post-btn-container > button {
+  padding: 7px;
+  margin: 5px;
   border: 1px solid;
   border-radius: 5px;
+  background-color: skyblue;
+  font-size: small;
+  border-color: transparent;
 }
 
-#posts-list-container {
+#board-posts-list-container {
   display: flex;
   justify-content: flex-start;
+}
+
+#posting-form-toggle-btn:hover {
+  
+  opacity: 0.5;
+}
+
+#posts-all-remove-btn:hover {
+  
+  opacity: 0.5;
+}
+
+#divider {
+  width: 50%;
+  margin: 20px auto;
 }

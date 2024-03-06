@@ -1,5 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import "./PostDetail.css";
+import { Link } from "react-router-dom";
+
 
 export default function PostDetail({ postData }) {
   let { id } = useParams();
@@ -17,13 +20,32 @@ export default function PostDetail({ postData }) {
   }
 
   return (
-    <div>
-      <h2>게시물 상세 정보</h2>
-      <p>게시물 ID: {post.id}</p>
-      <p>제목: {post.title}</p>
-      <p>작성자: {post.writer}</p>
-      <p>내용: {post.postBody}</p>
-      {/* 기타 게시물 정보를 여기에 표시합니다. */}
+    <div id="all-box">
+      <div id="postDetail-box">
+        <div id="postDetail-component-title">
+          <h2>게시물 상세 정보</h2>
+        </div>
+
+        <div className="postDetail-section">
+          <div className="postDetail-section-title">제목</div>
+          <div className="postDetail-section-content">{post.title}</div>
+        </div>
+
+        <div className="postDetail-section">
+          <div className="postDetail-section-title">작성자</div>
+          <div className="postDetail-section-content">{post.writer}</div>
+        </div>
+
+        <div className="postDetail-section">
+
+          <div id="postDetail-body" className="postDetail-section-content">
+            <p>{post.postBody}</p>
+          </div>
+        </div>
+      </div>
+      <div id="postDetail-return-btn">
+        <Link to={`/home/board`} className="btn btn-primary">게시판으로 돌아가기</Link>
+      </div>
     </div>
   );
 }
