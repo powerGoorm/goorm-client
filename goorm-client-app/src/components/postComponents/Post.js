@@ -1,28 +1,61 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Post.css";
+import { validateInput } from "./PostValidation";
 
-export default function Post({ id, title, writer, postBody, postData, setPostData }) {
+export default function Post({ id, title: initialTitle, writer: initialWriter, postBody: initialPostBody, postData, setPostData }) {
 
   // 수정 기능 구현을 위한 state
   const [isEditing, setIsEditing] = useState(false);
-  const [editedTitle, setEditedTitle] = useState(title);
-  const [editedWriter, setEditedWriter] = useState(writer);
-  const [editedPostBody, setEditedPostBody] = useState(postBody);
+  const [editedTitle, setEditedTitle] = useState(initialTitle);
+  const [editedWriter, setEditedWriter] = useState(initialWriter);
+  const [editedPostBody, setEditedPostBody] = useState(initialPostBody);
+
+  // 각 입력 필드의 유효성 검사 오류 메시지를 관리하는 state
+  const [titleError, setTitleError] = useState("");
+  const [writerError, setWriterError] = useState("");
+  const [postBodyError, setPostBodyError] = useState("");
 
   const handleTitleEditChange = (e) => {
-    setEditedTitle(e.target.value);
+    const value = e.target.value;
+    setEditedTitle(value);
+
+    // 유효성 검사
+    const errorMessage = validateInput(value, '제목');
+    setTitleError(errorMessage);
   }
 
   const handleWriterEditChange = (e) => {
-    setEditedWriter(e.target.value);
+    const value = e.target.value;
+    setEditedWriter(value);
+    // 유효성 검사
+    const errorMessage = validateInput(value, '작성자');
+    setWriterError(errorMessage);
   }
 
   const handlePostBodyEditChange = (e) => {
-    setEditedPostBody(e.target.value);
+    const value = e.target.value;
+    setEditedPostBody(value);
+    // 유효성 검사
+    const errorMessage = validateInput(value, '게시글 내용');
+    setPostBodyError(errorMessage);
   }
 
   const handleSubmit = () => {
+    // 각 입력 필드의 유효성 검사
+    const titleErrorMessage = validateInput(editedTitle, '제목');
+    const writerErrorMessage = validateInput(editedWriter, '작성자');
+    const postBodyErrorMessage = validateInput(editedPostBody, '게시글 내용');
+
+    // 오류가 있는 경우 오류 메시지를 설정하고 처리 중단
+    if (titleErrorMessage || writerErrorMessage || postBodyErrorMessage) {
+      setTitleError(titleErrorMessage);
+      setWriterError(writerErrorMessage);
+      setPostBodyError(postBodyErrorMessage);
+      return;
+    }
+
+    // 유효성 검사 통과 시 submit 로직 수행
     let newPostData = postData.map((data) => {
       if (data.id === id) {
         data.title = editedTitle;
@@ -32,7 +65,6 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
       return data;
     });
 
-    // setPostData 함수를 올바르게 호출합니다.
     if (typeof setPostData === 'function') {
       setPostData(newPostData);
       localStorage.setItem("postData", JSON.stringify(newPostData));
@@ -45,15 +77,12 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
   }
 
   // 삭제 기능 구현
-
   const handleDeleteClick = (id) => {
     let newPostData = postData.filter((data) => data.id !== id);
     setPostData(newPostData);
     localStorage.setItem("postData", JSON.stringify(newPostData));
   };
 
-
-  
   if (isEditing) {
     return (
       <div className="post-edit-box card">
@@ -65,23 +94,22 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
               onChange={handleTitleEditChange}
               autoFocus
             />
+            {titleError && <span className="error">{titleError}</span>}
             <input
               id="post-edit-writer"
               value={editedWriter}
               onChange={handleWriterEditChange}
-              autoFocus
             />
+            {writerError && <span className="error">{writerError}</span>}
           </div>
           <div className="card-body edit-card-body">
             <textarea
-            id="post-edit-postBody"
-            value={editedPostBody}
-            onChange={handlePostBodyEditChange}
-            whiteSpace="pre-line"
-            autoFocus
-            rows="3"
-            type="text"
-          />
+              id="post-edit-postBody"
+              value={editedPostBody}
+              onChange={handlePostBodyEditChange}
+              rows="3"
+            />
+            {postBodyError && <span className="error">{postBodyError}</span>}
           </div>
         </form>
         <div className="post-edit-btn-container">
@@ -89,27 +117,27 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
             onClick={() => setIsEditing(false)}
             type="button"
             id="post-edit-cancel-btn"
-          >x</button>
+          >취소</button>
           <button 
             onClick={handleSubmit} 
             type="submit"
             id="post-edit-save-btn"
-          >save</button>
+          >저장</button>
         </div>
       </div>
     )
   } else {
     // 게시글 내용의 글자 수가 100자 이상일 경우, 100자까지만 보여주고 "..."을 추가하여 출력
-    const limitedPostBody = postBody.length > 100 ? postBody.slice(0, 200) + "..." : postBody;
+    const limitedPostBody = initialPostBody.length > 100 ? initialPostBody.slice(0, 100) + "..." : initialPostBody;
 
     return (
       <div id="post-container">
         <div className="card">
           <div className="card-header read-card-header">
-            <span id="writer-span">작성자 : {writer}</span> 
+            <span id="writer-span">작성자 : {initialWriter}</span> 
             <div id="inpost-btn-container">
               <div id="post-delete">
-                <button id='post-delete-btn' onClick={() => handleDeleteClick(id)}>x</button>
+                <button id='post-delete-btn' onClick={() => handleDeleteClick(id)}>삭제</button>
               </div>
               <div id="post-edit">
                 <button id='post-edit-btn' onClick={() => setIsEditing(true)}>수정하기</button>
@@ -117,7 +145,7 @@ export default function Post({ id, title, writer, postBody, postData, setPostDat
             </div>
           </div>
           <div className="card-body">
-            <h5 className="card-title">{title}</h5>
+            <h5 className="card-title">{initialTitle}</h5>
             <p className="card-text">{limitedPostBody}</p>
             <Link to={`/home/board/post/${id}`} className="btn btn-primary">자세히 읽기</Link>
           </div>

@@ -1,25 +1,99 @@
-import React from 'react'
+import React, { useState } from 'react'
 import "./PostingForm.css"
+import { validateInput } from './PostValidation';
 
-export default function PostingForm({ title, setTitle, postBody, setPostBody, writer, setWriter, handleSubmit }) {
+export default function PostingForm({ postData, setPostData, isPostingFormVisible, setIsPostingFormVisible }) {
 
+  // 새로운 게시글을 만들기 위한 state
+
+  const [title, setTitle] = useState("");
+  const [postBody, setPostBody] = useState("");
+  const [writer, setWriter] = useState("");
+
+  // 각 입력 필드의 유효성 검사 오류 메시지를 관리하는 state
+  const [titleError, setTitleError] = useState("");
+  const [writerError, setWriterError] = useState("");
+  const [postBodyError, setPostBodyError] = useState("");
+
+  // 새로운 게시글 등록 함수
+  const handlePostSubmit = (e) => {
+
+    // 새로고침 방지
+    e.preventDefault();
+
+    // 각 입력 필드의 유효성 검사
+
+    const titleErrorMessage = validateInput(title, '제목');
+    const writerErrorMessage = validateInput(writer, '작성자');
+    const postBodyErrorMessage = validateInput(postBody, '게시글 내용');
+
+    // 오류가 있는 경우 오류 메시지를 설정하고 처리 중단
+    if (titleErrorMessage || writerErrorMessage || postBodyErrorMessage) {
+      setTitleError(titleErrorMessage);
+      setWriterError(writerErrorMessage);
+      setPostBodyError(postBodyErrorMessage);
+      return;
+    }
+
+    // 유효성 검사 통과 시 submit 로직 수행 새로운 게시글 객체 생성
+    let newPost = {
+      id: Date.now(),
+      title: title,
+      postBody: postBody,
+      writer: writer,
+      writtenDate: Date.now(),
+    };
+
+    // 새로운 게시글 객체를 기존 객체 배열에 추가
+    let newPostDataArray = [...postData, newPost];
+    setPostData(newPostDataArray);
+    localStorage.setItem("postData", JSON.stringify([...postData, newPost]));
+
+    // input 부분 비우기
+    setTitle("");
+    setPostBody("");
+    setWriter("");
+
+    // 게시글 작성 form 없애기
+    setIsPostingFormVisible(!isPostingFormVisible);
+  };
+
+  // 각 input 값 할당 및 유효성 검사
   const handleTitleChange = (e) => {
-    setTitle(e.target.value);
-  }
 
-  const handlePostBodyChange = (e) => {
-    setPostBody(e.target.value);
+    const value = e.target.value;
+    setTitle(value);
+
+    const errorMessage = validateInput(value, '제목');
+    setTitleError(errorMessage);
+
   }
 
   const handleWriterchange = (e) => {
-    setWriter(e.target.value);
+
+    const value = e.target.value;
+    setWriter(value);
+
+    // 유효성 검사
+    const errorMessage = validateInput(value, '작성자');
+    setWriterError(errorMessage);
+  }
+
+  const handlePostBodyChange = (e) => {
+
+    const value = e.target.value;
+    setPostBody(value);
+
+    // 유효성 검사
+    const errorMessage = validateInput(value, '게시글 내용');
+    setPostBodyError(errorMessage);
   }
 
 
   return (
     <div id='post-container'>
 
-      <form onSubmit={handleSubmit} id="post-submit-box" >
+      <form onSubmit={handlePostSubmit} id="post-submit-box" >
         <div className="input-group mb-3" id="post-title-input">
           <span className="input-group-text" id='inpurGroup-sizing-default'>제목</span>
           <input
@@ -32,6 +106,7 @@ export default function PostingForm({ title, setTitle, postBody, setPostBody, wr
             value={title}
             onChange={handleTitleChange}
           />
+          {titleError && <span className="error">{titleError}</span>}
         </div>
 
         <div className="input-group mb-3" id="post-writer-input">
@@ -44,6 +119,7 @@ export default function PostingForm({ title, setTitle, postBody, setPostBody, wr
             value={writer}
             onChange={handleWriterchange}
           />
+          {writerError && <span className="error">{writerError}</span>}
         </div>
 
         <div className="mb-3">
@@ -57,6 +133,7 @@ export default function PostingForm({ title, setTitle, postBody, setPostBody, wr
             value={postBody}
             onChange={handlePostBodyChange}
           ></textarea>
+          {postBodyError && <span className="error">{postBodyError}</span>}
         </div>
 
         <input

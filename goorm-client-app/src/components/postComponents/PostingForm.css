@@ -31,8 +31,20 @@
 }
 #post-submit-btn {
   background-color: skyblue;
+  border : 1px solid transparent;
+  border-radius: 5px;
+  height: 45px;
 }
 
 #post-submit-btn:hover {
   opacity: 0.7;
+}
+
+.input-group {
+  display: flex;
+
+}
+.input-group > div {
+  display: flex;
+  flex-direction: row;
 }
