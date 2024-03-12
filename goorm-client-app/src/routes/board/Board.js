@@ -15,7 +15,7 @@ export default function Board({ postData, setPostData }) {
 
   // 모든 게시글 삭제 함수
   const handleRemoveAllPostClick = () => {
-    let allRemoveQuestion = window.confirm("정말 모든 게시글을 지우시겠습니까?");
+    let allRemoveQuestion = window.confirm("정말 모든 게시글을 지우시겠습니까? 삭제 후 되돌릴 수 없습니다.");
     if (allRemoveQuestion === true) {
       setPostData([]);
       localStorage.setItem("postData", JSON.stringify([]));

@@ -78,9 +78,15 @@ export default function Post({ id, title: initialTitle, writer: initialWriter, p
 
   // 삭제 기능 구현
   const handleDeleteClick = (id) => {
-    let newPostData = postData.filter((data) => data.id !== id);
+
+    let removePostQuestion = window.confirm('정말 게시글을 삭제하시겠습니까? 삭제 후 되돌릴 수 없습니다.');
+
+    if (removePostQuestion === true) {
+      let newPostData = postData.filter((data) => data.id !== id);
     setPostData(newPostData);
     localStorage.setItem("postData", JSON.stringify(newPostData));
+    }
+    
   };
 
   if (isEditing) {
