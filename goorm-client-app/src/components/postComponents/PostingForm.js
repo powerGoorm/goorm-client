@@ -94,7 +94,7 @@ export default function PostingForm({ postData, setPostData, isPostingFormVisibl
     <div id='post-container'>
 
       <form onSubmit={handlePostSubmit} id="post-submit-box" >
-        <div className="input-group mb-3" id="post-title-input">
+        <div className="input-group" id="post-title-input">
           <span className="input-group-text" id='inpurGroup-sizing-default'>제목</span>
           <input
             type="text"
@@ -106,10 +106,10 @@ export default function PostingForm({ postData, setPostData, isPostingFormVisibl
             value={title}
             onChange={handleTitleChange}
           />
-          {titleError && <span className="error">{titleError}</span>}
         </div>
+        {titleError && <div className="text-validation-error">{titleError}</div>}
 
-        <div className="input-group mb-3" id="post-writer-input">
+        <div className="input-group" id="post-writer-input">
           <span className="input-group-text" id='inputGroup-sizing-default'>작성자</span>
           <input
             type="text"
@@ -119,22 +119,21 @@ export default function PostingForm({ postData, setPostData, isPostingFormVisibl
             value={writer}
             onChange={handleWriterchange}
           />
-          {writerError && <span className="error">{writerError}</span>}
         </div>
+        {writerError && <div className="text-validation-error">{writerError}</div>}
 
-        <div className="mb-3">
+        <div id="post-body-input">
           <textarea
             className="form-control"
             id="exampleFormControlTextarea1"
             rows="3"
-            whiteSpace="pre-line"
             name="postBody"
             placeholder="게시글 내용을 입력하세요."
             value={postBody}
             onChange={handlePostBodyChange}
           ></textarea>
-          {postBodyError && <span className="error">{postBodyError}</span>}
         </div>
+        {postBodyError && <div className="text-validation-error">{postBodyError}</div>}
 
         <input
           id="post-submit-btn"
