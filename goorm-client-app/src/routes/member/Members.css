@@ -1,0 +1,46 @@
+/* css 임시 작성하였습니다. */
+/* 검색바 css 작성 */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.searchbar {
+  margin-right: 10px;
+}
+
+/* 멤버 table css 작성 */
+.member-info_container {
+  margin: 0 auto;
+  width: 80%;
+  border-collapse: collapse;
+}
+
+.info-category th,
+.member-infos td {
+  text-align: center;
+  padding: 8px;
+}
+
+.member-infos td a {
+  text-decoration: none;
+  color: #000;
+}
+
+.info-category th {
+  background-color: #6799FF;
+}
+
+.member-info_container,
+.info-category th,
+.member-infos td {
+  border: 1px solid #ddd;
+}
+
+.filter-button {
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
