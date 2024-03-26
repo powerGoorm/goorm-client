@@ -24,15 +24,13 @@
   font-size: 16px;
   border-radius: 7px;
   border: none;
-  background-color: #287be6;
+  
   color: white;
   padding: 8px 20px;
   transition: background-color 0.3s, transform 0.3s;
   cursor: pointer;
 }
-.login_btn:hover {
-  background-color: #165ab6;
-}
+
 
 
 

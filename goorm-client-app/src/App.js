@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./components/header/Header";
 import Home from "./routes/home/Home";
-import Auth from "./routes/auth/Auth";
+import Login from "./routes/auth/Login";
 import SignUp from "./routes/auth/SignUp";
 import ResetPassword from "./routes/auth/ResetPassword";
 import Board from "./routes/board/Board";
@@ -33,8 +33,8 @@ function App() {
     <Router>
       <Header />
       <Routes>
-        <Route path="/" exact={true} element={<Auth />} />
-        <Route path="/Home" element={<Home />} />
+        <Route path="/login" exact={true} element={<Login />} />
+        <Route path="/" element={<Home />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="/Home/Board" element={<Board postData={postData} setPostData={setPostData} />} />
