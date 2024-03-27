@@ -1,18 +1,22 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import "./PostDetail.css";
-import { Link } from "react-router-dom";
 
-
-export default function PostDetail({ postData }) {
+export default function PostDetail({ postData, isLoggedIn }) {
   let { id } = useParams();
+  const navigate = useNavigate();
 
-  // 해당 ID와 일치하는 게시물을 찾는 함수
+  useEffect(() => {
+    if (!isLoggedIn) {
+      alert("로그인이 필요한 페이지입니다.");
+      navigate(`/login`);
+    }
+  }, [isLoggedIn, navigate]);
+
   const findPostById = (id) => {
-    return postData.find(post => post.id === parseInt(id));
+    return postData ? postData.find(post => post.id === parseInt(id)) : null;
   };
 
-  // 해당 ID와 일치하는 게시물 가져오기
   const post = findPostById(id);
 
   if (!post) {
@@ -37,14 +41,15 @@ export default function PostDetail({ postData }) {
         </div>
 
         <div className="postDetail-section">
-
           <div id="postDetail-body" className="postDetail-section-content">
             <p>{post.postBody}</p>
           </div>
         </div>
       </div>
       <div id="postDetail-return-btn">
-        <Link to={`/home/board`} className="btn btn-primary">게시판으로 돌아가기</Link>
+        <button className="btn btn-primary" onClick={() => navigate(`/board`)}>
+          게시판으로 돌아가기
+        </button>
       </div>
     </div>
   );

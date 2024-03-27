@@ -4,7 +4,7 @@ import {Link, useNavigate} from 'react-router-dom';
 import { Container, Card, Form, Button }  from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Login = () => {
+const Login = ({ setIsLoggedIn  }) => {
 
   const navigate = useNavigate();
 
@@ -21,14 +21,14 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(loginData);
     try{
         // 서버의 로그인 API 엔드포인트로 POST 요청을 보냅니다.
         const response = await axios.post('http://Goorm-server-eb-env.eba-34dkepc4.ap-northeast-2.elasticbeanstalk.com/login', loginData);
 
-        console.log(response);
         sessionStorage.setItem('sessionToken', response.data.sessionToken);
-        navigate('/home'); // 로그인 성공 후 리디렉션할 경로
+        setIsLoggedIn(true);
+        alert('로그인되었습니다.');
+        navigate('/'); // 로그인 성공 후 리디렉션할 경로
     }
     catch (error) {
       

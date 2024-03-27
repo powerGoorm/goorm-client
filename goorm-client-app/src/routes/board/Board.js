@@ -1,14 +1,10 @@
 import React, { useState } from "react";
+
 import "./Board.css";
 import PostList from "../../components/postComponents/PostList";
 import PostingForm from "../../components/postComponents/PostingForm";
 
-export default function Board({ postData, setPostData }) {
-
-  // 새로운 게시글을 만들기 위한 state
-  const [title, setTitle] = useState("");
-  const [postBody, setPostBody] = useState("");
-  const [writer, setWriter] = useState("");
+export default function Board({ postData, setPostData, isLoggedIn }) {
 
   // 게시글 작성 폼 toggle을 위한 state
   const [isPostingFormVisible, setIsPostingFormVisible] = useState(false);
@@ -18,38 +14,9 @@ export default function Board({ postData, setPostData }) {
     setIsPostingFormVisible(!isPostingFormVisible);
   };
 
-  // 새로운 게시글 등록 함수
-  const handlePostSubmit = (e) => {
-
-    // 새로고침 방지
-    e.preventDefault();
-
-    // 새로운 게시글 객체 생성
-    let newPost = {
-      id: Date.now(),
-      title: title,
-      postBody: postBody,
-      writer: writer,
-      writtenDate: Date.now(),
-    };
-
-    // 새로운 게시글 객체를 기존 객체 배열에 추가
-    let newPostDataArray = [...postData, newPost];
-    setPostData(newPostDataArray);
-    localStorage.setItem("postData", JSON.stringify([...postData, newPost]));
-
-    // input 부분 비우기
-    setTitle("");
-    setPostBody("");
-    setWriter("");
-
-    // 게시글 작성 form 없애기
-    setIsPostingFormVisible(!isPostingFormVisible);
-  };
-
   // 모든 게시글 삭제 함수
   const handleRemoveAllPostClick = () => {
-    let allRemoveQuestion = window.confirm("정말 모든 게시글을 지우시겠습니까?");
+    let allRemoveQuestion = window.confirm("정말 모든 게시글을 지우시겠습니까? 삭제 후 되돌릴 수 없습니다.");
     if (allRemoveQuestion === true) {
       setPostData([]);
       localStorage.setItem("postData", JSON.stringify([]));
@@ -63,7 +30,7 @@ export default function Board({ postData, setPostData }) {
       <div id="board-page-title">
         <h1>게시판</h1>
       </div>
-      <hr id="divider"/>
+      <hr id="divider" />
       <div id="board-container">
         <div id="board-post-btn-container">
           <button onClick={togglePostingForm} id="posting-form-toggle-btn">
@@ -76,13 +43,10 @@ export default function Board({ postData, setPostData }) {
         {isPostingFormVisible && (
           <div id="posting-form" className="toggle-posting-form">
             <PostingForm
-              title={title}
-              setTitle={setTitle}
-              postBody={postBody}
-              setPostBody={setPostBody}
-              writer={writer}
-              setWriter={setWriter}
-              handleSubmit={handlePostSubmit}
+              postData={postData}
+              setPostData={setPostData}
+              isPostingFormVisible={isPostingFormVisible}
+              setIsPostingFormVisible={setIsPostingFormVisible}
             />
           </div>
         )}

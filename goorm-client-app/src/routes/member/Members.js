@@ -54,7 +54,7 @@ const members = [
 ];
 
 
-function Members() {
+function Members({isLoggedIn}) {
 
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredMembers, setFilteredMembers] = useState(members);

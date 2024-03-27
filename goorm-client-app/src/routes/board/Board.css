@@ -11,20 +11,23 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
-  
+  align-items: center;
   width: auto;
   padding: 3px;
   margin: 10px;
 }
 
-#board-container > div {
-  padding: 3px;
-  margin: 3px;
+
+#posting-form {
+  width: 100%;
+  max-width: 1000px;
+
 }
 
 #board-post-btn-container {
   display: flex;
   justify-content: center;
+  margin-bottom: 20px;
 }
 
 #board-post-btn-container > button {
@@ -39,7 +42,10 @@
 
 #board-posts-list-container {
   display: flex;
-  justify-content: flex-start;
+  width: 100%;
+  max-width: 1000px;
+  align-items: center;
+  justify-content: center;
 }
 
 #posting-form-toggle-btn:hover {
