@@ -1,6 +1,6 @@
 import React from "react";
 
-const Donggeun = () => {
+const Donggeun = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 동근 </h1>

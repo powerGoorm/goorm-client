@@ -1,6 +1,6 @@
 import React from "react";
 
-const Yerin = () => {
+const Yerin = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 예린 </h1>

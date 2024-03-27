@@ -1,6 +1,6 @@
 import React from "react";
 
-const Wooseok = () => {
+const Wooseok = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 우석 </h1>

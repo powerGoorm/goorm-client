@@ -1,6 +1,6 @@
 import React from "react";
 
-const Mingyu = () => {
+const Mingyu = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 민규 </h1>

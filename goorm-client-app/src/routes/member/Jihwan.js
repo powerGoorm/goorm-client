@@ -1,6 +1,6 @@
 import React from "react";
 
-const Jihwan = () => {
+const Jihwan = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 지환 </h1>

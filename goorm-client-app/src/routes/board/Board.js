@@ -3,7 +3,7 @@ import "./Board.css";
 import PostList from "../../components/postComponents/PostList";
 import PostingForm from "../../components/postComponents/PostingForm";
 
-export default function Board({ postData, setPostData }) {
+export default function Board({ postData, setPostData, isLoggedIn }) {
 
   // 게시글 작성 폼 toggle을 위한 state
   const [isPostingFormVisible, setIsPostingFormVisible] = useState(false);

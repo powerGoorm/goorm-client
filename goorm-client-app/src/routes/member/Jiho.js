@@ -1,6 +1,6 @@
 import React from "react";
 
-const Jiho = () => {
+const Jiho = ({isLoggedIn}) => {
   return (
     <div>
       <h1> 지호 </h1>
