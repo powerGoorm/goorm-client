@@ -1,5 +1,6 @@
 .home-container {
   text-align: center;
+  margin: 5px;
 }
 
 .home-title {
@@ -9,4 +10,33 @@
 .divider {
   width: 50%;
   margin: 20px auto;
+}
+
+.home-title-container {
+  margin-bottom: 40px;
+}
+
+.home-section-container {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.home-section-container > div {
+  width: 30%;
+  min-height: 300px;
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  margin: 0px 20px 0px 20px;
+  padding: 10px;
+}
+
+.to-board-btn {
+  border: 1px solid transparent;
+  background-color: rgb(212, 255, 241);
+  color: black;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
