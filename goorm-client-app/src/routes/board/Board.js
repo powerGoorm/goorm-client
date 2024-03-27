@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import "./Board.css";
 import PostList from "../../components/postComponents/PostList";
 import PostingForm from "../../components/postComponents/PostingForm";

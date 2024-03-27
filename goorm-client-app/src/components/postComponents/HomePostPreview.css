@@ -1,0 +1,9 @@
+.link-item {
+  text-decoration: none;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+.postBody {
+  font-size: small;
+}

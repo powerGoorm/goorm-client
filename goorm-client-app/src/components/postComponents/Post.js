@@ -153,7 +153,7 @@ export default function Post({ id, title: initialTitle, writer: initialWriter, p
           <div className="card-body">
             <h5 className="card-title">{initialTitle}</h5>
             <p className="card-text">{limitedPostBody}</p>
-            <Link to={`/home/board/post/${id}`} className="btn btn-primary">자세히 읽기</Link>
+            <Link to={`/board/post/${id}`} className="btn btn-primary">자세히 읽기</Link>
           </div>
         </div>
       </div>

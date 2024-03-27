@@ -36,7 +36,9 @@ function App() {
 
 
   return (
-    <Router>
+    <div className="app">
+      <div className="bg-img"></div>
+      <Router>
       <Header isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
       <Routes>
         <Route
@@ -51,14 +53,16 @@ function App() {
         <Route path="/Members/Mingyu" element={<Mingyu isLoggedIn={isLoggedIn} />} />
         <Route path="/Members/Wooseok" element={<Wooseok isLoggedIn={isLoggedIn} />} />
         <Route path="/Members/Jihwan" element={<Jihwan isLoggedIn={isLoggedIn} />} />
-        <Route path="/board/post/:id" element={<PostDetail isLoggedIn={isLoggedIn} />} />
-        <Route path="/" element={<Home />} />
+        <Route path="/board/post/:id" element={<PostDetail postData={postData} isLoggedIn={isLoggedIn} />} />
+        <Route path="/" element={<Home  postData={postData} />} />
         <Route path="/SignUp" element={<SignUp />} />
         <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
         <Route path="/ResetPassword" element={<ResetPassword />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
+    </div>
+    
   );
 }
 
